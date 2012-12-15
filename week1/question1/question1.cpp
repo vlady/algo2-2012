@@ -4,10 +4,16 @@
 using namespace std;
 
 typedef long long LL;
-typedef vector<pair<LL, LL> > JobList; 
+typedef pair<LL, LL> Job;
+typedef vector<Job> JobList; 
 
 int num_jobs;
 JobList jobs; // (weight, length)
+
+bool ratio(Job a, Job b) {
+  // larger ratio wins: weight/length
+  return a.first * b.second > b.first * a.second;
+} 
 
 LL evaluate_jobs(const JobList& jobs) {
   int num_jobs = jobs.size();
@@ -35,6 +41,11 @@ void read_input() {
 
 int main() {
   read_input();
-  cout << evaluate_jobs(jobs) << '\n';
+
+  cout << "Initial: " << evaluate_jobs(jobs) << '\n';
+  sort(jobs.rbegin(), jobs.rend(), ratio);
+  cout << "Non-optimal: " << evaluate_jobs(jobs) << '\n';
+  sort(jobs.begin(), jobs.end(), ratio);
+  cout << "Optimal: " << evaluate_jobs(jobs) << '\n';
   return 0;  
 }
