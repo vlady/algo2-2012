@@ -13,8 +13,4 @@
 *.a
 
 # Mac files
-<<<<<<< HEAD
 .DS_Store
-=======
-.DS_Store
->>>>>>> git ignore
