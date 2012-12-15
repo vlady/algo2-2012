@@ -15,6 +15,14 @@ bool ratio(Job a, Job b) {
   return a.first * b.second > b.first * a.second;
 } 
 
+bool diff(Job a, Job b) {
+  // larger difference wins
+  LL d1 = a.first - a.second;
+  LL d2 = b.first - b.second;
+  if (d1 != d2) return d1 > d2;
+  return a.first > b.first;
+}
+
 LL evaluate_jobs(const JobList& jobs) {
   int num_jobs = jobs.size();
   LL sum_lengths = 0;
@@ -43,7 +51,7 @@ int main() {
   read_input();
 
   cout << "Initial: " << evaluate_jobs(jobs) << '\n';
-  sort(jobs.rbegin(), jobs.rend(), ratio);
+  sort(jobs.begin(), jobs.end(), diff);
   cout << "Non-optimal: " << evaluate_jobs(jobs) << '\n';
   sort(jobs.begin(), jobs.end(), ratio);
   cout << "Optimal: " << evaluate_jobs(jobs) << '\n';
