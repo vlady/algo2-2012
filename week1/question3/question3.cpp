@@ -29,7 +29,7 @@ int main() {
     int best_edge_id = -1;
     for (int idx = 0; idx < num_edges; ++idx) {
       int a = edges[idx].a, b = edges[idx].b;
-      if (in_mst[a] ^ in_mst[b]) continue;
+      if (in_mst[a] ^ in_mst[b] == false) continue;
       if (best_edge_id == -1 || edges[best_edge_id].c > edges[idx].c) {
         best_edge_id = idx;
       } 
